@@ -1,0 +1,43 @@
+
+:root {
+  --main-color: #F24405;
+  --main-color-light: #FF5722;
+  --main-color-dark: #A62F03;
+  --main-color-darkest: #8C3908;
+  --color-accent-light: #66FFE4;
+  --color-accent: #00E1BF;
+  --color-accent-dark: #00B88F;
+  --color-accent-darkest: #00966E;
+  --color-box: #A6A6A6;
+  --bg-light: #404040;
+  --bg-middle: #262626;
+  --bg-dark: #0D0D0D;
+  --text-color: #F2F2F2;
+  --text-muted: #cacaca;
+  --text-color-invert: #101010;
+    --btn-neutral: #e6e6e6;
+  --btn-neutral-hover: #dcdcdc;
+  /* tmavší stín pod kalkulačkou */
+  --shadow-strong: rgba(0, 0, 0, 0.7);
+  --shadow-soft: rgba(0, 0, 0, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(242, 68, 5, 0.2), transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(0, 225, 191, 0.15), transparent 60%),
+    linear-gradient(135deg, var(--bg-dark), var(--bg-middle));
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 3rem;
+}

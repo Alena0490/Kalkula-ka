@@ -1,0 +1,173 @@
+ @font-face {
+  font-family: "Open 24 Display St";
+  src: url("./digital.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+ 
+ .calculator { 
+  margin: 3rem auto;
+  max-width: 320px; 
+}
+
+.mainCalc {
+  margin-top: 1.5rem;
+  padding: 1.4rem;
+  border-radius: 2rem;
+  background: linear-gradient(180deg, var(--bg-light), var(--bg-middle));
+  box-shadow:
+    0 20px 35px var(--shadow-strong),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.calculator-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 0 auto 1rem;
+  color: var(--main-color);
+  /* padding: 0.6rem 1rem; */
+  /* border-radius: 999px; */
+  /* border: 2px solid var(--bg-middle); */
+  /* background-color: rgba(0, 0, 0, 0.6); */
+}
+
+h2 { 
+  text-align: center; 
+  margin-bottom: 20px; 
+}
+
+.screen {
+  background: linear-gradient(180deg, #d9d9d9, #bfbfbf);
+  color: var(--text-color-invert);
+  padding: 0.9rem 0.9rem 0.7rem;
+  border-radius: 1.2rem;
+  margin-bottom: 1rem;
+  font-family: "Open 24 Display St", system-ui, sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  min-height: 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.65),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.35);
+}
+
+.output-screen-row {
+  display: flex;
+  width: 100%;
+}
+
+/* displej jen zobrazuje, neinteraguje */
+.screen input {
+  width: 100%;
+  height: 42px;
+  padding: 0 0.5rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: right;
+  pointer-events: none;
+}
+
+.screen .question input {
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+.screen .answer input {
+  font-size: 2.5rem;
+  opacity: 1;
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.button-row:last-child { 
+  margin-bottom: 0;
+}
+
+input[type="button"] {
+  width: 100%;
+  height: 52px;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(180deg, var(--btn-neutral), #d0d0d0);
+  border: none;
+  border-radius: 1.2rem;
+  cursor: pointer;
+  box-shadow:
+    0 7px 0 rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition:
+    transform 0.08s ease-out,
+    box-shadow 0.08s ease-out,
+    background 0.15s ease-out;
+  color: var(--text-color-invert);
+}
+
+input[type="button"]:hover {
+  background: linear-gradient(180deg, var(--btn-neutral-hover), #cfcfcf);
+}
+
+input[type="button"]:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+input[type="button"]:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Clear */
+input[type="button"].clear {
+  background: linear-gradient(180deg, var(--main-color), var(--main-color-darkest));
+  color: var(--text-color);
+  box-shadow:
+    0 7px 0 rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+input[type="button"].clear:hover {
+  background: linear-gradient(180deg, var(--main-color-light), var(--main-color-dark));
+}
+
+/* = */
+input[type="button"].equals {
+  background: linear-gradient(180deg, var(--color-accent), var(--color-accent-darkest));
+  color: var(--text-color);
+  box-shadow:
+    0 7px 0 rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+input[type="button"].equals:hover {
+  background: linear-gradient(180deg, var(--color-accent-light), var(--color-accent-dark));
+}
+
+
+input[type="button"].delete { 
+  background: linear-gradient(45deg, #888888, #555555);
+  color: var(--text-color); 
+}
+input[type="button"].delete:hover { 
+  background: linear-gradient(45deg, #AAAAAA, #888888);
+}
+
+.button-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
