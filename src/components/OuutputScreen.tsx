@@ -6,12 +6,13 @@ type OutputScreenProps = {
   className?: string;
 };
 
-const OutputScreen = ({ question, answer, className }: OutputScreenProps) => {
+const OutputScreen = ({ question, answer }: OutputScreenProps) => {
   return (
     <div className="screen">
-      <OutputScreenRow value={question} className="question" />
-      <OutputScreenRow value={answer} className="answer" />
+        <OutputScreenRow value={question} className="question" />
+        <OutputScreenRow value={answer} className="answer" />
     </div>
+
   );
 };
 

@@ -5,31 +5,91 @@
   font-style: normal;
   font-display: swap;
 }
+
+section  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  height: 100vh;
+  margin: auto;
+}
  
  .calculator { 
-  margin: 3rem auto;
+  margin: auto;
   max-width: 320px; 
 }
 
 .mainCalc {
-  margin-top: 1.5rem;
+  position: relative; 
   padding: 1.4rem;
+  margin: auto;
   border-radius: 2rem;
-  background: linear-gradient(180deg, var(--bg-light), var(--bg-middle));
+  background: 
+  linear-gradient(180deg, var(--bg-light-tr), var(--bg-middle-tr)),
+  url(./steel.webp);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: hard-light;
   box-shadow:
-    0 20px 35px var(--shadow-strong),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
+    /* Vnitřní světlo (highlight na horní hraně) */
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    
+    /* Vnější jemná hrana (subtilní ohraničení) */
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    
+    /* Hloubka (3D efekt tlačítka/zařízení) */
+    0 7px 0 rgba(0, 0, 0, 0.6),
+    
+    /* Měkký hlavní stín (ambientní osvětlení) */
+    0 20px 35px var(--shadow-strong);
 }
 
+/* Odlesk v horní části kalkulačky */
+.mainCalc::before {
+  content: "";
+  position: absolute;
+  top: 0.1rem;
+  left: 0.125rem;
+  right: 0.125rem; 
+  /* výška pásu se světlem */
+  height: 3.7rem;  
+  border-radius: 1.9rem 1.9rem 1.4rem 1.4rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.20),
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.02)
+  );
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.mainCalc::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.15;
+  background-image: url("./grunge-metal-texture-background.jpg");
+  mix-blend-mode: soft-light;
+}
+
+
 .calculator-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
   text-align: center;
-  font-size: 2.5rem;
-  margin: 0 auto 1rem;
+  font-size: 3rem;
   color: var(--main-color);
-  /* padding: 0.6rem 1rem; */
-  /* border-radius: 999px; */
-  /* border: 2px solid var(--bg-middle); */
-  /* background-color: rgba(0, 0, 0, 0.6); */
 }
 
 h2 { 
@@ -38,7 +98,10 @@ h2 {
 }
 
 .screen {
-  background: linear-gradient(180deg, #d9d9d9, #bfbfbf);
+  position: relative;
+  -webkit-font-smoothing: none;
+  text-rendering: geometricPrecision;
+  background: linear-gradient(180deg, #c7c7c7, #a9a9a9);
   color: var(--text-color-invert);
   padding: 0.9rem 0.9rem 0.7rem;
   border-radius: 1.2rem;
@@ -51,8 +114,43 @@ h2 {
   flex-direction: column;
   justify-content: center;
   box-shadow:
-    inset 0 2px 4px rgba(255, 255, 255, 0.65),
-    inset 0 -4px 6px rgba(0, 0, 0, 0.35);
+    inset 0 3px 5px rgba(0, 0, 0, 0.28),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.7);  /* nový řádek */
+}
+
+.screen::before {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  right: 0.3rem;
+  top: 0.2rem;
+  height: 0.8rem;
+  border-radius: 1.2rem 1.2rem 0.4rem 0.4rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.screen::after {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: -0.25rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.45),
+    transparent 70%
+  );
+  pointer-events: none;
 }
 
 .output-screen-row {
@@ -74,12 +172,12 @@ h2 {
 }
 
 .screen .question input {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   opacity: 0.7;
 }
 
 .screen .answer input {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   opacity: 1;
 }
 
@@ -94,80 +192,119 @@ h2 {
   margin-bottom: 0;
 }
 
-input[type="button"] {
+button {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   height: 52px;
   padding: 0;
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
-  background: linear-gradient(180deg, var(--btn-neutral), #d0d0d0);
+  background: linear-gradient(180deg, var(--color-box), var(--btn-neutral));
   border: none;
   border-radius: 1.2rem;
   cursor: pointer;
-  box-shadow:
+   box-shadow:
     0 7px 0 rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18); /* NEW*/
   transition:
     transform 0.08s ease-out,
     box-shadow 0.08s ease-out,
     background 0.15s ease-out;
   color: var(--text-color-invert);
+  z-index: 500;
 }
 
-input[type="button"]:hover {
-  background: linear-gradient(180deg, var(--btn-neutral-hover), #cfcfcf);
+button::before {
+  content: "";
+  position: absolute;
+  left: 0.1rem;
+  right: 0.1rem;
+  top: 0.02rem;
+  height: 0.15rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 200;
 }
 
-input[type="button"]:active {
+button:hover {
+  background: linear-gradient(180deg,  #cfcfcf, var(--btn-neutral-hover));
+}
+
+button:active {
   transform: translateY(1px);
   box-shadow:
     0 3px 0 rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
-input[type="button"]:focus-visible {
-  outline: 2px solid var(--color-accent);
+button:focus-visible {
+  outline: 2px solid var(--main-color);
   outline-offset: 2px;
 }
 
-/* Clear */
-input[type="button"].clear {
-  background: linear-gradient(180deg, var(--main-color), var(--main-color-darkest));
-  color: var(--text-color);
-  box-shadow:
-    0 7px 0 rgba(0, 0, 0, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+button.op {
+  background: linear-gradient(180deg, #8e8e8e, #c7c7c7);
 }
 
-input[type="button"].clear:hover {
-  background: linear-gradient(180deg, var(--main-color-light), var(--main-color-dark));
+/* Clear */
+button.clear {
+  background: linear-gradient(180deg,  var(--main-color-darkest), var(--main-color));
+  color: var(--text-color);
+}
+
+button.clear:hover {
+  background: linear-gradient(180deg,  var(--main-color-dark), var(--main-color-light));
 }
 
 /* = */
-input[type="button"].equals {
-  background: linear-gradient(180deg, var(--color-accent), var(--color-accent-darkest));
+button.equals {
+  background: linear-gradient(180deg,  var(--color-accent-darkest), var(--color-accent));
   color: var(--text-color);
-  box-shadow:
-    0 7px 0 rgba(0, 0, 0, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  grid-column: span 2;
 }
 
-input[type="button"].equals:hover {
-  background: linear-gradient(180deg, var(--color-accent-light), var(--color-accent-dark));
+button.equals:hover {
+  background: linear-gradient(180deg, var(--color-accent-dark), var(--color-accent-light));
 }
 
 
-input[type="button"].delete { 
-  background: linear-gradient(45deg, #888888, #555555);
+button.delete { 
+  background: linear-gradient(180deg,  #555, #777);
   color: var(--text-color); 
 }
-input[type="button"].delete:hover { 
-  background: linear-gradient(45deg, #AAAAAA, #888888);
+
+button.delete:hover { 
+  background: linear-gradient(180deg, #666, #8f8f8f);
 }
 
 .button-grid {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  z-index: 400;
+}
+
+.button-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0.2rem 0.1rem 0.1rem;
+  border-radius: 1.4rem;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.4),
+    transparent 65%
+  );
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
 }

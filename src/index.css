@@ -10,7 +10,9 @@
   --color-accent-darkest: #00966E;
   --color-box: #A6A6A6;
   --bg-light: #404040;
+  --bg-light-tr: #404040D5;
   --bg-middle: #262626;
+  --bg-middle-tr: #26262640;
   --bg-dark: #0D0D0D;
   --text-color: #F2F2F2;
   --text-muted: #cacaca;
@@ -29,15 +31,13 @@
 }
 
 body {
-  background:
+background:
     radial-gradient(circle at 20% 20%, rgba(242, 68, 5, 0.2), transparent 55%),
     radial-gradient(circle at 80% 80%, rgba(0, 225, 191, 0.15), transparent 60%),
     linear-gradient(135deg, var(--bg-dark), var(--bg-middle));
   color: var(--text-color);
   font-family: Arial, sans-serif;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 3rem;
 }
