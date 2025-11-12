@@ -5,18 +5,29 @@ type ButtonProps = {
 };
 
 const Button = ({ label, handleClick, className }: ButtonProps) => {
+    // Sound feedback
   const playSound = () => {
-  console.log('🔊 Attempting to play sound...'); // Toto by se mělo zobrazit v konzoli
-  const audio = new Audio('click.mp3');
-  console.log('Audio object created:', audio);
-  audio.volume = 1;
-  audio.play()
-    .then(() => console.log('✅ Sound played!'))
-    .catch((error) => console.error('❌ Audio error:', error));
+    const audio = new Audio('click.mp3');
+    audio.volume = 1;
+    audio.play().catch(() => {});
+  }
+  // Vibration feedback
+  const vibrate = () => {
+  if ('vibrate' in navigator) {
+    // Different vibration patterns based on button type
+    if (label === 'Clear') {
+      navigator.vibrate(30); // Longer vibration for Clear
+    } else if (label === '=') {
+      navigator.vibrate([10, 5, 10]); // Double pulse for Equals
+    } else {
+      navigator.vibrate(10); // Short vibration for other buttons
+    }
+  }
 };
 
-  const handleClickWithSound = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickWithFeedback = (event: React.MouseEvent<HTMLButtonElement>) => {
     playSound();
+    vibrate();
     handleClick(event);
   };
 
@@ -24,7 +35,7 @@ const Button = ({ label, handleClick, className }: ButtonProps) => {
     <button
       type="button"
       value={label}
-      onClick={handleClickWithSound}
+      onClick={handleClickWithFeedback}
       className={className}
     >
       {label}

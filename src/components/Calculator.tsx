@@ -22,7 +22,7 @@ const Calculator = () => {
                 // 🧮 Kontrola dělení nulou
                 // Pokud výraz obsahuje "/" a výsledek je Infinity, zobraz chybu
                 if (question.includes("/") && !isFinite(result)) {
-                    setAnswer("Nelze dělit nulou");
+                    setAnswer("Nelze delit nulou");
                 } else {
                     setAnswer(String(result));
                 }
