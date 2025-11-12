@@ -9,8 +9,8 @@ type OutputScreenProps = {
 const OutputScreen = ({ question, answer }: OutputScreenProps) => {
   return (
     <div className="screen">
-        <OutputScreenRow value={question} className="question" />
-        <OutputScreenRow value={answer} className="answer" />
+        <OutputScreenRow value={question} className="question" id="question-screen" />
+        <OutputScreenRow value={answer} className="answer" id="answer screen"/>
     </div>
 
   );
